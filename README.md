@@ -134,7 +134,6 @@ Through this project I practiced:
 * Git and GitHub workflow
 
 ```
-
 ```mermaid
 flowchart TD
 
@@ -154,8 +153,7 @@ EC2 --> SG[Security Group]
 EC2 --> S3[S3 Bucket]
 
 S3 --> Versioning[Versioning Enabled]
-S3 --> BlockPublic[Public Access Block]
+S3 --> Block[Public Access Block]
 
-EC2 --> Cloud[CloudWatch / Logging]
-```
+EC2 --> Logs[Cloud Logging]
 ```
