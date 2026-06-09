@@ -134,4 +134,50 @@ Through this project I practiced:
 * Git and GitHub workflow
 
 ```
+
+```mermaid
+flowchart TD
+
+dev[Developer] --> tf[Terraform CLI]
+
+subgraph AWS[AWS Cloud]
+
+    subgraph VPC[VPC Network]
+        igw[Internet Gateway]
+        rt[Route Table]
+        subnet[Public Subnet]
+    end
+
+    subgraph Compute[Compute Layer]
+        ec2[EC2 Instance]
+    end
+
+    subgraph IAM[IAM]
+        role[IAM Role for EC2]
+    end
+
+    subgraph Storage[S3]
+        bucket[S3 Bucket]
+        versioning[Versioning Enabled]
+        pblock[Public Access Block]
+    end
+
+    subgraph SG[Security Groups]
+        sg[Restricted Inbound Rules]
+    end
+
+end
+
+tf --> VPC
+tf --> Compute
+tf --> IAM
+tf --> Storage
+tf --> SG
+
+ec2 --> role
+ec2 --> sg
+subnet --> ec2
+igw --> subnet
+rt --> subnet
+```
 ```
