@@ -138,46 +138,24 @@ Through this project I practiced:
 ```mermaid
 flowchart TD
 
-dev[Developer] --> tf[Terraform CLI]
+Dev[Developer] --> TF[Terraform CLI]
 
-subgraph AWS[AWS Cloud]
+TF --> VPC[VPC]
 
-    subgraph VPC[VPC Network]
-        igw[Internet Gateway]
-        rt[Route Table]
-        subnet[Public Subnet]
-    end
+VPC --> Subnet[Public Subnet]
+VPC --> IGW[Internet Gateway]
+VPC --> RT[Route Table]
 
-    subgraph Compute[Compute Layer]
-        ec2[EC2 Instance]
-    end
+Subnet --> EC2[EC2 Instance]
 
-    subgraph IAM[IAM]
-        role[IAM Role for EC2]
-    end
+EC2 --> IAM[IAM Role]
+EC2 --> SG[Security Group]
 
-    subgraph Storage[S3]
-        bucket[S3 Bucket]
-        versioning[Versioning Enabled]
-        pblock[Public Access Block]
-    end
+EC2 --> S3[S3 Bucket]
 
-    subgraph SG[Security Groups]
-        sg[Restricted Inbound Rules]
-    end
+S3 --> Versioning[Versioning Enabled]
+S3 --> BlockPublic[Public Access Block]
 
-end
-
-tf --> VPC
-tf --> Compute
-tf --> IAM
-tf --> Storage
-tf --> SG
-
-ec2 --> role
-ec2 --> sg
-subnet --> ec2
-igw --> subnet
-rt --> subnet
+EC2 --> Cloud[CloudWatch / Logging]
 ```
 ```
