@@ -133,7 +133,6 @@ Through this project I practiced:
 * Infrastructure deployment automation
 * Git and GitHub workflow
 
-```
 ```mermaid
 flowchart TD
 
